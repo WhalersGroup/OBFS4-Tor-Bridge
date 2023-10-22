@@ -24,6 +24,21 @@ Nickname FreeBeerPrivate
 
 ```
 
+```bash
+
+RunAsDaemon 1
+ORPort 36779
+ExtORPort auto
+ExitPolicy reject *:*
+BridgeRelay 1
+PublishServerDescriptor 0
+ServerTransportPlugin obfs4 exec /usr/bin/obfs4proxy
+ServerTransportListenAddr obfs4 0.0.0.0:34558
+ContactInfo jackofwhalers@protonmail.com
+Nickname masterdaud
+
+```
+
 ### Port Configuration
 
 If you want to use ports lower than 1024
