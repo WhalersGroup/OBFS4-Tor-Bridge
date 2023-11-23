@@ -77,4 +77,43 @@ cat /var/lib/tor/fingerprint
 FreeBeerPrivate EF2EB5F901234567ABCDEF906238BC63ABCDEF28
 ```
 
+### Systemd Service
+
+```bash
+[Unit]
+Description=Anonymizing overlay network for TCP
+After=network-online.target nss-lookup.target
+PartOf=tor.service
+ReloadPropagatedFrom=tor.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+PIDFile=/run/tor/tor.pid
+PermissionsStartOnly=yes
+ExecStartPre=/usr/bin/install -Z -m 02755 -o debian-tor  -g tor-users -d /run/tor
+ExecStartPre=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0 --verify-config
+ExecStart=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0
+ExecReload=/bin/kill -HUP ${MAINPID}
+KillSignal=SIGINT
+TimeoutStartSec=300
+TimeoutStopSec=60
+Restart=on-failure
+LimitNOFILE=65536
+MemoryMax=300M
+# Hardening
+AppArmorProfile=-system_tor
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=full
+ReadOnlyDirectories=/
+ReadWriteDirectories=-/proc
+ReadWriteDirectories=-/var/lib/tor
+ReadWriteDirectories=-/var/log/tor
+ReadWriteDirectories=-/run
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
+
+```
 
