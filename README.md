@@ -8,6 +8,10 @@ apt install tor obfs4proxy
 nano /etc/tor/torrc
 ```
 
+```bash
+deb     [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org focal  main
+#deb-src [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org focal  main
+```
 ### TORRC FILE
 ```bash
 
