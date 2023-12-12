@@ -1,6 +1,12 @@
 # OBFS4-Tor-Bridge
 How to stop worrying and love the TOR
 
+## Sources.list
+```bash
+deb     [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org focal main
+deb-src [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org focal main
+```
+
 ## Server Configuration
 ```bash
 apt install tor obfs4proxy
