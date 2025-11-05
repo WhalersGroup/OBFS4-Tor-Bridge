@@ -1,6 +1,10 @@
 # OBFS4-Tor-Bridge
 How to stop worrying and love the TOR
 
+```bash
+curl -s https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | sudo tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null
+```
+
 ## Sources.list
 ```bash
 deb     [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org jammy main
