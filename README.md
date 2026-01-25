@@ -91,6 +91,16 @@ cat /var/lib/tor/fingerprint
 FreeBeerPrivate EF2EB5F901234567ABCDEF906238BC63ABCDEF28
 ```
 
+### Privileged Ports
+```shell
+sudo setcap cap_net_bind_service=+ep /usr/bin/obfs4proxy
+
+sudo systemctl edit tor@.service tor@default.service
+
+[Service]
+NoNewPrivileges=no
+```
+
 ### Systemd Service
 
 ```bash
